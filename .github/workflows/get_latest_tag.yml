@@ -1,0 +1,30 @@
+name: Get latest release
+on:
+  schedule:
+    - cron: "0 */6 * * *"
+  workflow_dispatch:
+jobs:
+  Fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          token: ${{secrets.TOKEN}}
+
+      - name: Fetch release
+        run: |
+          curl --silent "https://api.github.com/repos/Eugeny/Tabby/releases/latest" | jq -r '.tag_name' | sed s/v//g > ./latest_tag
+
+      - name: Check for modified files
+        id: git-check
+        run: echo ::set-output name=modified::$([ -z "`git status --porcelain`" ] && echo "false" || echo "true")
+
+
+      - name: Commit latest release version
+        if: steps.git-check.outputs.modified == 'true'
+        run: |
+          git config --global user.email "jai.jap.318@gmail.com"
+          git config --global user.name "Jai-JAP"
+          git commit -am "New release version"
+          git push
