@@ -81,7 +81,7 @@ jobs:
             cd ./hyper &&
             sed -i '/\"electron\":/c\    \"electron\" : \"^17.0.0\",' package.json &&
             yarn --network-timeout 1000000 &&
-            USE_SYSTEM_FPM=true yarn run dist --arm64 &&
+            USE_SYSTEM_FPM=true yarn run dist --armv7l &&
             mkdir -p ../pkgs &&
             mv ./dist/*.deb ../pkgs &&
             mv ./dist/*.rpm ../pkgs &&
