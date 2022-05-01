@@ -5,7 +5,7 @@ on:
     branches: 
       - 'main'
     paths: 
-      - 'latest_tag'
+      - 'latest_release'
   workflow_dispatch:
 
 jobs:
@@ -17,7 +17,7 @@ jobs:
 
       - name: Setup env
         run: |
-          echo "REL=$(cat latest_tag)" >> $GITHUB_ENV
+          echo "REL=$(cat latest_release)" >> $GITHUB_ENV
 
       - name: Set up multiarch/qemu-user-static
         run: |
@@ -61,7 +61,7 @@ jobs:
 
       - name: Setup env
         run: |
-          echo "REL=$(cat latest_tag)" >> $GITHUB_ENV
+          echo "REL=$(cat latest_release)" >> $GITHUB_ENV
 
       - name: Set up multiarch/qemu-user-static
         run: |
