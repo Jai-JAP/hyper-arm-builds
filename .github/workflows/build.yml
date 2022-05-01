@@ -80,14 +80,8 @@ jobs:
             git clone https://github.com/vercel/hyper.git -b v${{env.REL}} --single-branch &&
             cd ./hyper &&
             sed -i '/\"electron\":/c\    \"electron\" : \"^17.0.0\",' package.json &&
-            cd app &&
             yarn --network-timeout 1000000 &&
-            cd .. &&
-            yarn --network-timeout 1000000 &&
-            scripts/build-native.js &&
-            yarn run build &&
-            scripts/prepackage-plugins.js &&
-            USE_SYSTEM_FPM=true scripts/build-linux.js &&
+            USE_SYSTEM_FPM=true yarn run dist --arm64 &&
             mkdir -p ../pkgs &&
             mv ./dist/*.deb ../pkgs &&
             mv ./dist/*.rpm ../pkgs &&
