@@ -14,7 +14,7 @@ jobs:
 
       - name: Fetch release
         run: |
-          curl --silent "https://api.github.com/repos/Eugeny/Tabby/releases/latest" | jq -r '.tag_name' | sed s/v//g > ./latest_tag
+          curl --silent "https://api.github.com/repos/vercel/hyper/releases/latest" | jq -r '.tag_name' | sed s/v//g > ./latest_release
 
       - name: Check for modified files
         id: git-check
