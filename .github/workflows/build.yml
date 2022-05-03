@@ -27,7 +27,7 @@ jobs:
         with:
           args: >
             bash -c
-            "apt update && apt install curl lsb-release gnupg ca-certificates -y &&
+            "apt update && apt upgrade -y && apt install curl lsb-release gnupg ca-certificates -y &&
             curl -k https://curl.se/ca/cacert.pem -o /etc/ssl/certs/ca-certificates.crt &&
             update-ca-certificates &&
             mkdir -p /etc/apt/trusted.gpg.d /etc/apt/sources.list.d &&
@@ -79,7 +79,7 @@ jobs:
         with:
           args: >
             bash -c
-            "apt update && apt install curl lsb-release gnupg ca-certificates -y &&
+            "apt update && apt upgrade -y && apt install curl lsb-release gnupg ca-certificates -y &&
             curl -k https://curl.se/ca/cacert.pem -o /etc/ssl/certs/ca-certificates.crt &&
             update-ca-certificates &&
             mkdir -p /etc/apt/trusted.gpg.d /etc/apt/sources.list.d &&
