@@ -35,6 +35,8 @@ jobs:
             cd /github/workspace &&
             git clone https://github.com/vercel/hyper.git -b v${{env.REL}} --single-branch &&
             cd ./hyper &&
+            sed -i 's/      },\n      {\n        \"target\": \"snap\",\n        \"arch\": [\n          \"x64\"\n        ]//' electron-builder.json
+            sed -i '/\"x64\",/s' electron-builder.json &&
             yarn --network-timeout 1000000 &&
             npm i app-builder-lib &&
             USE_SYSTEM_FPM=true yarn run dist --arm64 &&
@@ -75,7 +77,7 @@ jobs:
             "apt update && apt install curl lsb-release gnupg -y &&
             curl -fsSL https://deb.nodesource.com/setup_16.x | bash - &&
             apt install make gcc g++ git ruby libarchive-tools nodejs rpm graphicsmagick icnsutils xz-utils -y &&
-            curl --remote-name --time-cond cacert.pem https://curl.se/ca/cacert.pem && mv cacert.pem /etc/pki/tls/cert.pem &&
+            curl -k --remote-name --time-cond cacert.pem https://curl.se/ca/cacert.pem && mv cacert.pem /etc/pki/tls/cert.pem &&
             gem install fpm --no-document &&
             npm i -g yarn &&
             cd /github/workspace &&
