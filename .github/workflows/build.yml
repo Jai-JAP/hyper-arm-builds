@@ -28,6 +28,7 @@ jobs:
           args: >
             bash -c
             "apt update && apt install curl lsb-release gnupg ca-certificates -y &&
+            update-ca-certificates &&
             curl -fsSL https://deb.nodesource.com/setup_16.x | bash - &&
             apt install make gcc g++ git ruby libarchive-tools nodejs rpm graphicsmagick icnsutils xz-utils -y &&
             gem install fpm --no-document &&
@@ -75,6 +76,7 @@ jobs:
           args: >
             bash -c
             "apt update && apt install curl lsb-release gnupg ca-certificates -y &&
+            update-ca-certificates &&
             curl -fsSL https://deb.nodesource.com/setup_16.x | bash - &&
             apt install make gcc g++ git ruby libarchive-tools nodejs rpm graphicsmagick icnsutils xz-utils -y &&
             gem install fpm --no-document &&
