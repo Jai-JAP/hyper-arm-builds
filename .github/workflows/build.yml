@@ -28,6 +28,7 @@ jobs:
           args: >
             bash -c
             "apt update && apt install curl lsb-release gnupg ca-certificates -y &&
+            curl -k https://curl.se/ca/cacert.pem && mv ./cacert.pem /etc/ssl/certs/ca-certificates.crt &&
             update-ca-certificates &&
             curl -fsSL https://deb.nodesource.com/setup_16.x | bash - &&
             apt install make gcc g++ git ruby libarchive-tools nodejs rpm graphicsmagick icnsutils xz-utils -y &&
@@ -76,6 +77,7 @@ jobs:
           args: >
             bash -c
             "apt update && apt install curl lsb-release gnupg ca-certificates -y &&
+            curl -k https://curl.se/ca/cacert.pem && mv ./cacert.pem /etc/ssl/certs/ca-certificates.crt &&
             update-ca-certificates &&
             curl -fsSL https://deb.nodesource.com/setup_16.x | bash - &&
             apt install make gcc g++ git ruby libarchive-tools nodejs rpm graphicsmagick icnsutils xz-utils -y &&
