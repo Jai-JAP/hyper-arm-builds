@@ -30,7 +30,11 @@ jobs:
             "apt update && apt install curl lsb-release gnupg ca-certificates -y &&
             curl -k https://curl.se/ca/cacert.pem -o /etc/ssl/certs/ca-certificates.crt &&
             update-ca-certificates &&
-            curl -kfsSL https://deb.nodesource.com/setup_16.x | bash - &&
+            #curl -kfsSL https://deb.nodesource.com/setup_16.x | bash - &&
+            mkdir -p /etc/apt/trusted.gpg.d /etc/apt/sources.list.d &&
+            curl -s https://deb.nodesource.com/gpgkey/nodesource.gpg.key |  gpg --dearmor | tee /etc/apt/trusted.gpg.d/nodesource.gpg &&
+            echo 'deb [signed-by=/etc/apt/trusted.gpg.d/nodesource.gpg] https://deb.nodesource.com/node_16.x buster main' /etc/apt/sources.list.d/nodesource.list &&
+            apt update &&
             apt install make gcc g++ git ruby libarchive-tools nodejs rpm graphicsmagick icnsutils xz-utils -y &&
             gem install fpm --no-document &&
             npm i -g yarn &&
@@ -79,7 +83,10 @@ jobs:
             "apt update && apt install curl lsb-release gnupg ca-certificates -y &&
             curl -k https://curl.se/ca/cacert.pem -o /etc/ssl/certs/ca-certificates.crt &&
             update-ca-certificates &&
-            curl -kfsSL https://deb.nodesource.com/setup_16.x | bash - &&
+            #curl -kfsSL https://deb.nodesource.com/setup_16.x | bash - &&
+            mkdir -p /etc/apt/trusted.gpg.d /etc/apt/sources.list.d &&
+            curl -s https://deb.nodesource.com/gpgkey/nodesource.gpg.key |  gpg --dearmor | tee /etc/apt/trusted.gpg.d/nodesource.gpg &&
+            echo 'deb [signed-by=/etc/apt/trusted.gpg.d/nodesource.gpg] https://deb.nodesource.com/node_16.x buster main' /etc/apt/sources.list.d/nodesource.list &&
             apt install make gcc g++ git ruby libarchive-tools nodejs rpm graphicsmagick icnsutils xz-utils -y &&
             gem install fpm --no-document &&
             npm i -g yarn &&
