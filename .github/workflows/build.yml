@@ -36,7 +36,7 @@ jobs:
             git clone https://github.com/vercel/hyper.git -b v${{env.REL}} --single-branch &&
             cd ./hyper &&
             sed -i 's/      },\n      {\n        \"target\": \"snap\",\n        \"arch\": [\n          \"x64\"\n        ]//' electron-builder.json
-            sed -i '/\"x64\",/d' electron-builder.json &&
+            sed '/\"x64\",/d' -i electron-builder.json &&
             yarn --network-timeout 1000000 &&
             npm i app-builder-lib &&
             USE_SYSTEM_FPM=true yarn run dist --arm64 &&
@@ -85,7 +85,7 @@ jobs:
             cd ./hyper &&
             sed -i '/\"electron\":/c\    \"electron\" : \"^17.0.0\",' package.json &&
             sed -i 's/      },\n      {\n        \"target\": \"snap\",\n        \"arch\": [\n          \"x64\"\n        ]//' electron-builder.json
-            sed -i '/\"x64\",/d' electron-builder.json &&
+            sed '/\"x64\",/d' -i electron-builder.json &&
             sed -i 's/\"arm64\"/\"armv7l\"/3' electron-builder.json &&
             yarn --network-timeout 1000000 &&
             npm i app-builder-lib &&
