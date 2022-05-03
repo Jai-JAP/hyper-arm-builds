@@ -27,7 +27,7 @@ jobs:
         with:
           args: >
             bash -c
-            "apt update && apt install curl lsb-release gnupg -y &&
+            "apt update && apt install curl lsb-release gnupg ca-certificates -y &&
             curl -fsSL https://deb.nodesource.com/setup_16.x | bash - &&
             apt install make gcc g++ git ruby libarchive-tools nodejs rpm graphicsmagick icnsutils xz-utils -y &&
             gem install fpm --no-document &&
@@ -74,10 +74,9 @@ jobs:
         with:
           args: >
             bash -c
-            "apt update && apt install curl lsb-release gnupg -y &&
+            "apt update && apt install curl lsb-release gnupg ca-certificates -y &&
             curl -fsSL https://deb.nodesource.com/setup_16.x | bash - &&
             apt install make gcc g++ git ruby libarchive-tools nodejs rpm graphicsmagick icnsutils xz-utils -y &&
-            curl -k --remote-name --time-cond cacert.pem https://curl.se/ca/cacert.pem && mv cacert.pem /etc/pki/tls/cert.pem &&
             gem install fpm --no-document &&
             npm i -g yarn &&
             cd /github/workspace &&
