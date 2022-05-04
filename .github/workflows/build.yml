@@ -29,15 +29,8 @@ jobs:
           args: >
             bash -c
             "apt update && apt upgrade -y && apt install curl lsb-release gnupg ca-certificates -y &&
-            curl -k https://curl.se/ca/cacert.pem -o /etc/ssl/certs/ca-certificates.crt &&
-            update-ca-certificates &&
-            mkdir -p /etc/apt/trusted.gpg.d /etc/apt/sources.list.d &&
-            curl -s https://deb.nodesource.com/gpgkey/nodesource.gpg.key |  gpg --dearmor | tee /etc/apt/trusted.gpg.d/nodesource.gpg &&
-            echo 'deb [signed-by=/etc/apt/trusted.gpg.d/nodesource.gpg] https://deb.nodesource.com/node_16.x buster main' >> /etc/apt/sources.list.d/nodesource.list &&
-            apt update &&
+            curl -fsSL https://deb.nodesource.com/setup_16.x | bash - &&
             apt install make gcc g++ git ruby libarchive-tools nodejs rpm graphicsmagick icnsutils xz-utils -y &&
-            mkdir -p /usr/lib/ssl/ &&
-            curl -k https://curl.se/ca/cacert.pem -o /usr/lib/ssl/cert.pem &&
             gem install fpm --no-document &&
             npm i -g yarn &&
             cd /github/workspace &&
@@ -85,15 +78,8 @@ jobs:
           args: >
             bash -c
             "apt update && apt upgrade -y && apt install curl lsb-release gnupg ca-certificates -y &&
-            curl -k https://curl.se/ca/cacert.pem -o /etc/ssl/certs/ca-certificates.crt &&
-            update-ca-certificates &&
-            mkdir -p /etc/apt/trusted.gpg.d /etc/apt/sources.list.d &&
-            curl -s https://deb.nodesource.com/gpgkey/nodesource.gpg.key |  gpg --dearmor | tee /etc/apt/trusted.gpg.d/nodesource.gpg &&
-            echo 'deb [signed-by=/etc/apt/trusted.gpg.d/nodesource.gpg] https://deb.nodesource.com/node_16.x buster main' >> /etc/apt/sources.list.d/nodesource.list &&
-            apt update &&
+            curl -fsSL https://deb.nodesource.com/setup_16.x | bash - &&
             apt install make gcc g++ git ruby libarchive-tools nodejs rpm graphicsmagick icnsutils xz-utils -y &&
-            mkdir -p /usr/lib/ssl/ &&
-            curl -k https://curl.se/ca/cacert.pem -o /usr/lib/ssl/cert.pem &&
             gem install fpm --no-document &&
             npm i -g yarn &&
             cd /github/workspace &&
