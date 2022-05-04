@@ -6,6 +6,7 @@ on:
       - 'main'
     paths: 
       - 'latest_release'
+      - '.github/workflows/build.yml'
   workflow_dispatch:
 
 jobs:
@@ -38,7 +39,7 @@ jobs:
             cd /github/workspace &&
             git clone https://github.com/vercel/hyper.git -b v${{env.REL}} --single-branch &&
             cd ./hyper &&
-            sed -e '/},/{:a;N;/]/!ba};/        \"target\": \"snap\",/d -i electron-builder.json &&
+            sed -e '/},/{:a;N;/]/!ba};/        \"target\": \"snap\",/d' -i electron-builder.json &&
             sed -e '/\"x64\",/d' -i electron-builder.json &&
             yarn --network-timeout 1000000 &&
             npm i app-builder-lib &&
@@ -89,7 +90,7 @@ jobs:
             git clone https://github.com/vercel/hyper.git -b v${{env.REL}} --single-branch &&
             cd ./hyper &&
             sed -e '/\"electron\":/c\    \"electron\" : \"^17.0.0\",' -i package.json &&
-            sed -e '/},/{:a;N;/]/!ba};/        \"target\":\ "snap\",/d -i electron-builder.json
+            sed -e '/},/{:a;N;/]/!ba};/        \"target\":\ "snap\",/d' -i electron-builder.json
             sed -e '/\"x64\",/d' -i electron-builder.json &&
             sed -e 's/\"arm64\"/\"armv7l\"/3' -i electron-builder.json &&
             yarn --network-timeout 1000000 &&
