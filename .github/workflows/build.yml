@@ -54,7 +54,9 @@ jobs:
             mv ./dist/*.pacman ../pkgs &&
             mv ./dist/*.tar.gz ../pkgs &&
             rm -rf hyper"
-            
+        env:
+          GH_TOKEN: ${{ secrets.TOKEN }}
+          
       - name: Upload
         uses: ncipollo/release-action@v1
         with:
@@ -110,7 +112,9 @@ jobs:
             mv ./dist/*.pacman ../pkgs &&
             mv ./dist/*.tar.gz ../pkgs &&
             rm -rf hyper"
-            
+        env:
+          GH_TOKEN: ${{ secrets.TOKEN }}
+          
       - name: Upload
         uses: ncipollo/release-action@v1
         with:
