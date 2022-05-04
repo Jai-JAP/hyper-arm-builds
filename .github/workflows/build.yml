@@ -36,7 +36,9 @@ jobs:
             apt update &&
             apt install make gcc g++ git ruby libarchive-tools nodejs rpm graphicsmagick icnsutils xz-utils -y &&
             curl -k https://curl.se/ca/cacert.pem -o cacert.pem &&
-            mv cacert.pem $(ruby -ropenssl -e 'p OpenSSL::X509::DEFAULT_CERT_FILE') &&
+            export CERT=$(ruby -ropenssl -e 'p OpenSSL::X509::DEFAULT_CERT_FILE')
+            rm $CERT && mv cacert.pem $CERT &&
+            unset CERT &&
             gem install fpm --no-document &&
             npm i -g yarn &&
             cd /github/workspace &&
@@ -89,7 +91,9 @@ jobs:
             echo 'deb [signed-by=/etc/apt/trusted.gpg.d/nodesource.gpg] https://deb.nodesource.com/node_16.x buster main' >> /etc/apt/sources.list.d/nodesource.list &&
             apt install make gcc g++ git ruby libarchive-tools nodejs rpm graphicsmagick icnsutils xz-utils -y &&
             curl -k https://curl.se/ca/cacert.pem -o cacert.pem &&
-            mv cacert.pem $(ruby -ropenssl -e 'p OpenSSL::X509::DEFAULT_CERT_FILE') &&
+            export CERT=$(ruby -ropenssl -e 'p OpenSSL::X509::DEFAULT_CERT_FILE')
+            rm $CERT && mv cacert.pem $CERT &&
+            unset CERT &&
             gem install fpm --no-document &&
             npm i -g yarn &&
             cd /github/workspace &&
