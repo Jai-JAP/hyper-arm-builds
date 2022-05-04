@@ -73,7 +73,7 @@ jobs:
         run: |
           docker run --rm --privileged multiarch/qemu-user-static:register --reset
 
-      - uses: docker://multiarch/debian-debootstrap:armhf-buster
+      - uses: docker://multiarch/ubuntu-core:armhf-bionic
         with:
           args: >
             bash -c
