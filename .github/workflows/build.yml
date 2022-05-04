@@ -28,21 +28,17 @@ jobs:
           args: >
             bash -c
             "apt update && apt upgrade -y && apt install curl lsb-release gnupg ca-certificates -y &&
-            curl -k https://curl.se/ca/cacert.pem -o /etc/ssl/certs/ca-certificates.crt &&
-            update-ca-certificates &&
             mkdir -p /etc/apt/trusted.gpg.d /etc/apt/sources.list.d &&
             curl -s https://deb.nodesource.com/gpgkey/nodesource.gpg.key |  gpg --dearmor | tee /etc/apt/trusted.gpg.d/nodesource.gpg &&
             echo 'deb [signed-by=/etc/apt/trusted.gpg.d/nodesource.gpg] https://deb.nodesource.com/node_16.x buster main' >> /etc/apt/sources.list.d/nodesource.list &&
             apt update &&
             apt install make gcc g++ git ruby libarchive-tools nodejs rpm graphicsmagick icnsutils xz-utils -y &&
-            mkdir -p /usr/lib/ssl/ &&
-            curl -k https://curl.se/ca/cacert.pem -o /usr/lib/ssl/cert.pem &&
             gem install fpm --no-document &&
             npm i -g yarn &&
             cd /github/workspace &&
             git clone https://github.com/vercel/hyper.git -b v${{env.REL}} --single-branch &&
             cd ./hyper &&
-            sed -e 's/      },\n      {\n        \"target\": \"snap\",\n        \"arch\": [\n          \"x64\"\n        ]//' -i electron-builder.json &&
+            sed -e '/},/{:a;N;/]/!ba};/        \"target\": \"snap\",/d -i electron-builder.json &&
             sed -e '/\"x64\",/d' -i electron-builder.json &&
             yarn --network-timeout 1000000 &&
             npm i app-builder-lib &&
@@ -77,26 +73,23 @@ jobs:
         run: |
           docker run --rm --privileged multiarch/qemu-user-static:register --reset
 
-      - uses: docker://multiarch/debian-debootstrap:armhf-buster
+    # - uses: docker://multiarch/debian-debootstrap:armhf-buster
+      - uses: docker://multiarch/ubuntu-core:armhf-bionic
         with:
           args: >
             bash -c
             "apt update && apt upgrade -y && apt install curl lsb-release gnupg ca-certificates -y &&
-            curl -k https://curl.se/ca/cacert.pem -o /etc/ssl/certs/ca-certificates.crt &&
-            update-ca-certificates &&
             mkdir -p /etc/apt/trusted.gpg.d /etc/apt/sources.list.d &&
-            mkdir -p /usr/lib/ssl/ &&
             curl -s https://deb.nodesource.com/gpgkey/nodesource.gpg.key |  gpg --dearmor | tee /etc/apt/trusted.gpg.d/nodesource.gpg &&
             echo 'deb [signed-by=/etc/apt/trusted.gpg.d/nodesource.gpg] https://deb.nodesource.com/node_16.x buster main' >> /etc/apt/sources.list.d/nodesource.list &&
             apt install make gcc g++ git ruby libarchive-tools nodejs rpm graphicsmagick icnsutils xz-utils -y &&
-            curl -k https://curl.se/ca/cacert.pem -o /usr/lib/ssl/cert.pem &&
             gem install fpm --no-document &&
             npm i -g yarn &&
             cd /github/workspace &&
             git clone https://github.com/vercel/hyper.git -b v${{env.REL}} --single-branch &&
             cd ./hyper &&
             sed -e '/\"electron\":/c\    \"electron\" : \"^17.0.0\",' -i package.json &&
-            sed -e 's/      },\n      {\n        \"target\": \"snap\",\n        \"arch\": [\n          \"x64\"\n        ]//' -i electron-builder.json &&
+            sed -e '/},/{:a;N;/]/!ba};/        \"target\":\ "snap\",/d -i electron-builder.json
             sed -e '/\"x64\",/d' -i electron-builder.json &&
             sed -e 's/\"arm64\"/\"armv7l\"/3' -i electron-builder.json &&
             yarn --network-timeout 1000000 &&
