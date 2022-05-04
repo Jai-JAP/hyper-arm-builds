@@ -35,7 +35,7 @@ jobs:
             echo 'deb [signed-by=/etc/apt/trusted.gpg.d/nodesource.gpg] https://deb.nodesource.com/node_16.x buster main' >> /etc/apt/sources.list.d/nodesource.list &&
             apt update &&
             apt install make gcc g++ git ruby libarchive-tools nodejs rpm graphicsmagick icnsutils xz-utils -y &&
-            curl -k --remote-name --time-cond cacert.pem https://curl.se/ca/cacert.pem &&
+            curl -k --remote-name --time-cond -o cacert.pem https://curl.se/ca/cacert.pem &&
             mv cacert.pem $(ruby -ropenssl -e 'p OpenSSL::X509::DEFAULT_CERT_FILE') &&
             gem install fpm --no-document &&
             npm i -g yarn &&
@@ -88,7 +88,7 @@ jobs:
             curl -s https://deb.nodesource.com/gpgkey/nodesource.gpg.key |  gpg --dearmor | tee /etc/apt/trusted.gpg.d/nodesource.gpg &&
             echo 'deb [signed-by=/etc/apt/trusted.gpg.d/nodesource.gpg] https://deb.nodesource.com/node_16.x buster main' >> /etc/apt/sources.list.d/nodesource.list &&
             apt install make gcc g++ git ruby libarchive-tools nodejs rpm graphicsmagick icnsutils xz-utils -y &&
-            curl -k --remote-name --time-cond cacert.pem https://curl.se/ca/cacert.pem &&
+            curl -k --remote-name --time-cond -o cacert.pem https://curl.se/ca/cacert.pem &&
             mv cacert.pem $(ruby -ropenssl -e 'p OpenSSL::X509::DEFAULT_CERT_FILE') &&
             gem install fpm --no-document &&
             npm i -g yarn &&
