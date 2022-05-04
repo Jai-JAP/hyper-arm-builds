@@ -48,7 +48,7 @@ jobs:
             mv ./dist/*.tar.gz ../pkgs &&
             rm -rf hyper"
         env:
-          GH_TOKEN: ${{ secrets.TOKEN }}
+          CI: 'false'
           
       - name: Upload
         uses: ncipollo/release-action@v1
@@ -99,7 +99,7 @@ jobs:
             mv ./dist/*.tar.gz ../pkgs &&
             rm -rf hyper"
         env:
-          GH_TOKEN: ${{ secrets.TOKEN }}
+          CI: 'false'
           
       - name: Upload
         uses: ncipollo/release-action@v1
