@@ -35,6 +35,7 @@ jobs:
             echo 'deb [signed-by=/etc/apt/trusted.gpg.d/nodesource.gpg] https://deb.nodesource.com/node_16.x buster main' >> /etc/apt/sources.list.d/nodesource.list &&
             apt update &&
             apt install make gcc g++ git ruby libarchive-tools nodejs rpm graphicsmagick icnsutils xz-utils -y &&
+            mkdir -p /usr/lib/ssl/ &&
             curl -k https://curl.se/ca/cacert.pem -o $(ruby -ropenssl -e 'p OpenSSL::X509::DEFAULT_CERT_FILE') &&
             gem install fpm --no-document &&
             npm i -g yarn &&
@@ -84,6 +85,7 @@ jobs:
             curl -k https://curl.se/ca/cacert.pem -o /etc/ssl/certs/ca-certificates.crt &&
             update-ca-certificates &&
             mkdir -p /etc/apt/trusted.gpg.d /etc/apt/sources.list.d &&
+            mkdir -p /usr/lib/ssl/ &&
             curl -s https://deb.nodesource.com/gpgkey/nodesource.gpg.key |  gpg --dearmor | tee /etc/apt/trusted.gpg.d/nodesource.gpg &&
             echo 'deb [signed-by=/etc/apt/trusted.gpg.d/nodesource.gpg] https://deb.nodesource.com/node_16.x buster main' >> /etc/apt/sources.list.d/nodesource.list &&
             apt install make gcc g++ git ruby libarchive-tools nodejs rpm graphicsmagick icnsutils xz-utils -y &&
