@@ -22,8 +22,7 @@ sed -e '/},/{:a;N;/]/!ba};/        "target": "snap",/d' -i electron-builder.json
 sed -e '/          x64",/d' -i electron-builder.json 
 
 # for armhf downgrade electron to 17.0.0 in package.json
-sed -i '/"electron":/c\    "electron" : "17.0.0\",' package.json
-
+sed -e '/"electron":/c\    "electron" : "^17.0.0",' -i package.json
 # change arm64 to armv7l for armhf build
 sed -e 's/          "arm64"/          "armv7l"/g' -i electron-builder.json
 
