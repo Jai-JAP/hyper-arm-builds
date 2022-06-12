@@ -23,7 +23,7 @@ jobs:
         run: |
           docker run --rm --privileged multiarch/qemu-user-static:register --reset
 
-      - uses: docker://multiarch/ubuntu-core:arm64-bionic
+      - uses: docker://multiarch/debian-debootstrap:arm64-buster
         with:
           args: >
             bash -c
