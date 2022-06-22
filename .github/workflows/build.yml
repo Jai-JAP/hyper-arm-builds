@@ -46,7 +46,7 @@ jobs:
             mv ./dist/*.AppImage ../pkgs &&
             rm -rf hyper"
         env:
-          CI: 'false'
+          GH_TOKEN: ${{secrets.TOKEN}}
           
       - name: Upload
         uses: ncipollo/release-action@v1
@@ -96,7 +96,7 @@ jobs:
             mv ./dist/*.AppImage ../pkgs &&
             rm -rf hyper"
         env:
-          CI: 'false'
+          GH_TOKEN: ${{secrets.TOKEN}}
           
       - name: Upload
         uses: ncipollo/release-action@v1
