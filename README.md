@@ -29,7 +29,7 @@ sed -e 's/          "arm64"/          "armv7l"/g' -i electron-builder.json
 sudo npm i -g yarn
 yarn --network-timeout 1000000
 npm i app-builder-lib
-yarn run dist
+USE_SYSTEM_FPM=true yarn run dist
 
 #Build artifacts will be in dist subfolder
 ```
