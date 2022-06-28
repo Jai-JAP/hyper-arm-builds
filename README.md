@@ -1,5 +1,5 @@
 # hyper-arm-builds
-[Hyper](https://github.com/vercel/hyper) built for armhf and arm64.
+https://github.com/vercel/hyper
 
 Finished builds are available on the [Releases](https://github.com/Jai-JAP/hyper-arm-builds/releases) page.
 
