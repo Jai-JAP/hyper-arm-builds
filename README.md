@@ -7,7 +7,7 @@ Latest Hyper releases are automatically compiled for armv7l/arm64 using Github w
 
 ## To compile Hyper on arm linux:
 ```
-sudo ap update
+sudo apt update
 sudo apt install -y libarchive-tools jq graphicsmagick icnsutils xz-utils ruby build-essentials git
 #Install nodejs 16
 curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
@@ -20,6 +20,10 @@ cd hyper
 # remove x64 builds
 sed -e '/},/{:a;N;/]/!ba};/        "target": "snap",/d' -i electron-builder.json 
 sed -e '/          x64",/d' -i electron-builder.json 
+sed -i 's/\ \&\& husky install//g' package.json
+sed -i '/electron-mksnapshot/d' package.json
+sed -i 's|yarn run v8-snapshot &&||g' package.json
+sed -i '/cp-snapshot.js/d' electron-builder.json
 
 # for armhf downgrade electron to 17.0.0 in package.json
 sed -e '/"electron":/c\    "electron" : "^17.0.0",' -i package.json
