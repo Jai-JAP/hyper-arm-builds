@@ -91,6 +91,10 @@ jobs:
             sed -e '/},/{:a;N;/]/!ba};/        \"target\": \"snap\",/d' -i electron-builder.json &&
             sed -e '/          \"x64\",/d' -i electron-builder.json &&
             sed -e 's/          \"arm64\"/          \"armv7l\"/g' -i electron-builder.json &&
+            sed -i 's/\ \&\& husky install//g' package.json &&
+            sed -i '/electron-mksnapshot/d' package.json && 
+            sed -i 's|yarn run v8-snapshot &&||g' package.json &&
+            sed -i '/cp-snapshot.js/d' electron-builder.json &&
             PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1 yarn --network-timeout 1000000 &&
             npm i app-builder-lib --legacy-peer-deps &&
             USE_SYSTEM_FPM=true yarn run dist --publish=never &&
