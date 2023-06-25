@@ -1,6 +1,12 @@
 # hyper-arm-builds
 https://github.com/vercel/hyper
 
+# ***NOTE: [DEPRECATED]***
+- arm64 builds were fixed & armhf support wad added to upstream hyper in [this](https://github.com/vercel/hyper/commit/20de964f53c3a85969c89398915a69bf1cb6218c) commit.
+- Use builds on upstream hyper releases [page](https://github.com/vercel/hyper/releases) (Will be availabe since v4.0.0).
+- This repo will be up for historic purposes.
+
+#   
 Finished builds are available on the [Releases](https://github.com/Jai-JAP/hyper-arm-builds/releases) page.
 
 Latest Hyper releases are automatically compiled for armv7l/arm64 using Github workflows.
